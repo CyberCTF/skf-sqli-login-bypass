@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=https://www.isoloom.com/schema/v1.json
+# OWASP SKF SQL Injection Login Bypass (OWASP Security Knowledge Framework labs, by Glenn ten Cate, Riccardo ten Cate and the SKF contributors) as an Isoloom spec:
+# a Flask login form whose username and password go straight into a SQL query (SQL injection login bypass). The SKF lab folder python/SQLI-login-bypass is
+# vendored unchanged in app/ and built by its own Dockerfile.
+# `isoloom generate`, then `isoloom run docker`.
+version: 1
+name: skf-sqli-login-bypass
+
+networks:
+  lab: { cidr: 10.60.132.0/24, internet: false }
+
+machines:
+  web:
+    networks: { lab: 10 }
+    services: [{ port: 5000, name: web, http: true, publish: 5050 }]
+    resources: { cpus: 1, memory_mb: 256 }
+    docker:
+      build: app
+
+checks:
+  - name: the lab answers
+    http: http://web:5000/
+    wait: 120
+  - name: the login form posts a username and a password to /login
+    script: checks/login.sh
+
+message: |
+  OWASP SKF SQL Injection Login Bypass answers at http://localhost:{{ machines.web.services.0.publish }}/.
+  The login form at / checks the credentials with a SQL query.
