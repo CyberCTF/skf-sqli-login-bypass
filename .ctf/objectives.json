@@ -1,0 +1,52 @@
+{
+  "objectives": [
+    {
+      "key": "main",
+      "title": "Read the flag",
+      "prompt": "Bypass the login with SQL injection and read the flags table.",
+      "check": {
+        "evidence": "SECRET",
+        "format": "FLAG{%s}"
+      },
+      "dev": "FLAG{dev-skf-sqli-login-bypass}",
+      "hints": [
+        "The username and password are concatenated into the SQL query.",
+        "Read about SQL injection in login forms and about SQLite's schema table."
+      ],
+      "steps": [
+        {
+          "key": "db",
+          "title": "Identify the database",
+          "prompt": "Which database engine validates the login?",
+          "check": {
+            "answer": [
+              "sqlite",
+              "sqlite3"
+            ]
+          }
+        },
+        {
+          "key": "class",
+          "title": "Name the weakness",
+          "prompt": "What class of vulnerability is this?",
+          "check": {
+            "answer": [
+              "sql injection",
+              "sqli"
+            ]
+          }
+        },
+        {
+          "key": "table",
+          "title": "Find the target",
+          "prompt": "Which table holds the flag?",
+          "check": {
+            "answer": [
+              "flags"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

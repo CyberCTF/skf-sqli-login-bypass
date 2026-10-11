@@ -1,7 +1,7 @@
 {
   "title": "OWASP SKF SQL Injection Login Bypass",
   "description": "A Flask login page backed by SQLite. The username and password are concatenated into the SQL query that validates the login.",
-  "question": "Log in as the admin user without knowing the password by injecting SQL into the login form.",
+  "question": "Inject SQL into the login form to bypass it, then read the flag from the flags table of the database.",
   "category": "WEB",
   "difficulty": 1,
   "evidence_kind": "SECRET"
