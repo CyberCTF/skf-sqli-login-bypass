@@ -1,8 +1,11 @@
 {
+  "project_name": "cyberlabs-skf-sqli-login-bypass",
+  "slug": "skf-sqli-login-bypass",
   "title": "OWASP SKF SQL Injection Login Bypass",
   "description": "A Flask login page backed by SQLite. The username and password are concatenated into the SQL query that validates the login.",
-  "question": "Inject SQL into the login form to bypass it, then read the flag from the flags table of the database.",
-  "category": "WEB",
+  "category": "web",
   "difficulty": 1,
-  "evidence_kind": "SECRET"
+  "evidence_kind": "SECRET",
+  "capabilities": [],
+  "question": "Inject SQL into the login form to bypass it, then read the flag from the flags table of the database."
 }
